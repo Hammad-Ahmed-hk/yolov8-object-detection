@@ -1,0 +1,36 @@
+# Model weights (too large for GitHub)
+*.pt
+*.pth
+*.onnx
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Streamlit
+.streamlit/
+
+# Temp files
+*.tmp
+*.temp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Uploaded files / outputs
+uploads/
+outputs/
+
+# Environment variables
+.env
