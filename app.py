@@ -10,7 +10,8 @@ import numpy as np
 import streamlit as st
 from PIL import Image
 from ultralytics import YOLO
-from streamlit_webrtc import VideoProcessorBase, webrtc_streamer
+from streamlit_webrtc import VideoProcessorBase
+from streamlit_webrtc import webrtc_streamer
 
 # ── Page config ───────────────────────────────────────────────────
 st.set_page_config(
@@ -262,11 +263,6 @@ _DEFAULT = (50, 80, 255)  # fallback for any unlisted class
 
 def color_for(label: str) -> tuple:
     return COLORS.get(label.lower(), _DEFAULT)
-_DEFAULT = (50, 80, 255)
-
-def color_for(label: str) -> tuple:
-    return COLORS.get(label.lower(), _DEFAULT)
-
 
 # ── Detection ─────────────────────────────────────────────────────
 def process_frame(img: np.ndarray, conf: float, iou: float = 0.45):
@@ -388,7 +384,7 @@ if app_mode == "📷 Webcam (Live)":
     webrtc_streamer(
         key="live-detection",
         video_processor_factory=VideoTransformer,
-        rtc_configuration={"iceServers": [{"urls": "stun:stun.l.google.com:19302"}]},
+        rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]},
         media_stream_constraints={"video": True, "audio": False},
     )
     st.markdown("""<div class="warn-box">
