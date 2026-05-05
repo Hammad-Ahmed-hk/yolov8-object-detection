@@ -180,8 +180,8 @@ This project is licensed under the **MIT License** — free to use, modify, and 
 
 ## 👤 Author
 
-**Your Name**  
-📧 your.email@example.com  
+**Hammad Ahmed**  
+📧 hammadahmed0402@gmail.com  
 🔗 [GitHub](https://github.com/your-username) · [LinkedIn](https://linkedin.com/in/your-profile)
 
 ---
