@@ -34,16 +34,12 @@ Detect objects instantly from your **webcam**, an **uploaded image**, or an **up
 
 ## 📁 Project Structure
 
-```
 yolov8-object-detection/
-│
-├── app.py              # Main Streamlit application
-├── requirements.txt    # Python dependencies
-├── .gitignore          # Excludes model weights & cache
-└── README.md           # This file
-```
-
----
+├── app.py
+├── requirements.txt
+├── packages.txt
+├── .python-version     ← keep this
+└── runtime.txt         ← ADD THIS (this is what Streamlit reads)
 
 ## 🚀 Getting Started
 
