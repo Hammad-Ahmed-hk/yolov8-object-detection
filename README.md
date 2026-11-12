@@ -11,10 +11,8 @@ Detect objects instantly from your **webcam**, an **uploaded image**, or an **up
 - 🖼️ **Image Upload** — upload JPG / JPEG / PNG and get annotated results instantly
 - 🎬 **Video Upload** — process MP4 / MOV / AVI files with per-frame detection
 - 🎚️ **Adjustable Confidence Threshold** — slider to control detection sensitivity
-- 🎨 **Color-coded Bounding Boxes**
-  - 🟢 Green → Person
-  - 🔵 Blue → Vehicle (car, truck, bus)
-  - 🔴 Red → All other objects
+- 🎨 **Color-coded Bounding Boxes** — a colour per COCO class (green for people, blues for vehicles, purples for animals, and so on; legend in the sidebar)
+- 🎚️ **NMS IoU slider** to control how overlapping boxes are merged
 - ⚡ **Auto model download** — `yolov8n.pt` is fetched automatically on first run
 
 ---
@@ -34,19 +32,23 @@ Detect objects instantly from your **webcam**, an **uploaded image**, or an **up
 
 ## 📁 Project Structure
 
+```
 yolov8-object-detection/
-├── app.py
-├── requirements.txt
-├── packages.txt
-├── .python-version     ← keep this
-└── runtime.txt         ← ADD THIS (this is what Streamlit reads)
+├── app.py              # Streamlit app (UI, detection, webcam/image/video modes)
+├── requirements.txt    # Python dependencies
+├── packages.txt        # System packages for Streamlit Community Cloud (libgl1, libglib2.0-0)
+├── runtime.txt         # Python version hint (python-3.11)
+└── .python-version     # Python version for pyenv/uv (3.11)
+```
+
+---
 
 ## 🚀 Getting Started
 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/yolov8-object-detection.git
+git clone https://github.com/Hammad-Ahmed-hk/yolov8-object-detection.git
 cd yolov8-object-detection
 ```
 
@@ -80,17 +82,10 @@ The app will open automatically at `http://localhost:8501`
 
 ---
 
-## 📦 requirements.txt
+## 📦 Dependencies
 
-```
-streamlit
-streamlit-webrtc
-ultralytics
-opencv-python
-Pillow
-av
-numpy
-```
+Install everything with `pip install -r requirements.txt` (Python 3.11 recommended).
+`streamlit-webrtc` and `tornado` are pinned in that file because newer versions broke the webcam stream; leave the pins alone unless you retest.
 
 ---
 
@@ -100,18 +95,17 @@ numpy
 1. Select **Webcam** from the sidebar dropdown
 2. Click **START** to begin the stream
 3. Allow browser camera permission when prompted
-4. Adjust the **Confidence Threshold** slider in real time
+4. Adjust the **Confidence** and **NMS IoU** sliders in the sidebar
 
 ### 🖼️ Image Upload Mode
 1. Select **Image Upload** from the sidebar
-2. Click **Browse files** and upload a `.jpg`, `.jpeg`, or `.png`
+2. Click **Browse files** and upload a `.jpg`, `.jpeg`, `.png`, `.webp` or `.bmp`
 3. The detected image with bounding boxes appears instantly
 
 ### 🎬 Video Upload Mode
 1. Select **Video Upload** from the sidebar
-2. Upload an `.mp4`, `.mov`, or `.avi` file
-3. Watch frame-by-frame detection play out
-4. Click **⏹ Stop Playback** to stop at any time
+2. Upload an `.mp4`, `.mov`, `.avi` or `.mkv` file
+3. Click **▶️ Run Detection** and watch frame-by-frame detection play out
 
 ---
 
@@ -119,7 +113,8 @@ numpy
 
 | Setting | Default | Description |
 |---------|---------|-------------|
-| Confidence Threshold | `0.25` | Minimum score to show a detection box |
+| Confidence Threshold | `0.20` | Minimum score to show a detection box (slider: 0.05 – 1.0) |
+| NMS IoU Threshold | `0.45` | Higher keeps more overlapping boxes (slider: 0.10 – 0.90) |
 | Model | `yolov8n.pt` | Nano model — fast & lightweight |
 
 To use a larger / more accurate model, change this line in `app.py`:
@@ -151,7 +146,7 @@ YOLOv8 can detect **80 COCO classes** including:
 |-------|-----|
 | Webcam not starting | Allow camera permission in browser |
 | Slow on CPU | Use `yolov8n` (default) or enable GPU |
-| Transparent PNG crash | Already handled — safe palette conversion built in |
+| Transparent PNG crash | Already handled — images are flattened onto a white background |
 | Video plays too fast | Normal — OpenCV reads frames at max CPU speed |
 
 ---
@@ -170,16 +165,12 @@ Pull requests are welcome!
 
 ## 📄 License
 
-This project is licensed under the **MIT License** — free to use, modify, and distribute.
+No `LICENSE` file has been added yet. Add one (for example MIT) before others reuse the code.
 
 ---
 
 ## 👤 Author
 
-**Hammad Ahmed**  
-📧 hammadahmed0402@gmail.com  
-🔗 [GitHub](https://github.com/your-username) · [LinkedIn](https://linkedin.com/in/your-profile)
+**Hammad Ahmed** · [GitHub](https://github.com/Hammad-Ahmed-hk)
 
----
-
-> Built with ❤️ using [Ultralytics YOLOv8](https://github.com/ultralytics/ultralytics) and [Streamlit](https://streamlit.io/)
+> Built with [Ultralytics YOLOv8](https://github.com/ultralytics/ultralytics) and [Streamlit](https://streamlit.io/)
